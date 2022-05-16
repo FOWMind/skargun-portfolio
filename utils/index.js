@@ -1,0 +1,1 @@
+export { removeHttp } from './removeHttp'
