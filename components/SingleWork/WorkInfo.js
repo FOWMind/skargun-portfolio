@@ -31,5 +31,5 @@ const StyledWorkInfoLink = styled.a.attrs((props) => ({
   ...props,
 }))`
   display: inline-block;
-  margin-right: 0.5rem;
+  margin: 0 0.5rem 0.5rem 0;
 `

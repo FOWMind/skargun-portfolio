@@ -94,37 +94,45 @@ const ImageWrapperButton = styled.button.attrs((props) => ({
   border: none;
   background: none;
   cursor: pointer;
-  width: 50%;
+  width: 49%;
   height: 40vw;
   display: inline-block;
+  margin: 2% 2% 0 0;
 
-  :nth-child(2n) img {
-    border-right: 0;
+  :nth-of-type(2n) {
+    margin-right: 0;
   }
 
   @media screen and (min-width: 500px) {
-    width: 33.33%;
+    width: 32%;
     height: 25vw;
+    margin: 2% 2% 0 0;
 
-    :nth-child(2n) img {
-      border-right: 5px solid #181818;
+    :nth-of-type(2n) {
+      margin-right: 2%;
     }
 
-    :nth-child(3n) img {
-      border-right: 0;
+    :nth-of-type(3n) {
+      margin-right: 0;
     }
   }
 
   @media screen and (min-width: 1000px) {
-    width: 20%;
+    width: 19%;
     height: 15vw;
     max-height: 200px;
-    :nth-child(3n) img {
-      border-right: 5px solid #181818;
+    margin: 1.25% 1.25% 0 0;
+
+    :nth-of-type(2n) {
+      margin-right: 1.25%;
     }
 
-    :nth-child(5n) img {
-      border-right: 0;
+    :nth-of-type(3n) {
+      margin-right: 1.25%;
+    }
+
+    :nth-of-type(5n) {
+      margin-right: 0;
     }
   }
 `
@@ -267,8 +275,6 @@ const Image = styled(StyledImage)`
   width: 100%;
   height: 100%;
   display: block;
-  border: 5px solid #0d2829;
-  border-left: 0;
   object-fit: contain;
   padding: 1rem;
 `

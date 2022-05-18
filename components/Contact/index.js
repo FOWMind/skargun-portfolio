@@ -28,7 +28,7 @@ export default function Contact() {
       </ContactItems>
 
       <ContactDescription>
-        <ContactDescriptionImage src={``} />
+        <ContactDescriptionImage src="/img/profile/main.png" />
         <ContactDescriptionText>
           Lorem ipsum dolor sit amet consectetur adipiscing elit. Duis Laoreet
           velit turpis, venenatis scelerisque nibh convallist a. Maecenas Eu
@@ -58,10 +58,10 @@ const ContactItemText = styled.span`
   display: inline-block;
   color: #fff;
   background-color: #1b5052;
+  text-transform: uppercase;
   font-size: 1.15rem;
   font-weight: 400;
-  text-transform: uppercase;
-  padding: 0 0.5rem;
+  padding: 0.5rem;
 `
 
 const FeaturedLink = styled.a`
@@ -96,8 +96,8 @@ const ContactDescriptionImage = styled.img.attrs((props) => ({
 const ContactDescriptionText = styled.p`
   color: #fff;
   text-transform: uppercase;
-  font-size: 1.15rem;
+  font-size: 0.9rem;
   font-weight: 400;
-  line-height: 1.25;
+  font-family: 'Montserrat', 'Koulen', sans-serif;
   max-width: 90ch;
 `

@@ -1,5 +1,7 @@
 import styled from 'styled-components'
+import { useState } from 'react'
 import { StyledButton } from '../Layout/Button'
+import { BsFilterLeft } from 'react-icons/bs'
 
 export default function Filter({
   currentCategoryState: { currentCategory, setCurrentCategory },
@@ -7,6 +9,8 @@ export default function Filter({
   workItems,
   setFilteredItems,
 }) {
+  const [isFiltering, setFiltering] = useState(true)
+
   const filterWorkItems = (category) => {
     if (category === currentCategory) return
     setCurrentCategory(category)
@@ -33,27 +37,31 @@ export default function Filter({
     <FilterContainer>
       {workItems && differentValues(getCategories(workItems)) && (
         <>
-          <FilterTitle>Filtrar contenido</FilterTitle>
-          <Filters>
-            <FilterItem>
-              <FilterItemBtn
-                active={currentCategory === 'todo' ? true : false}
-                onClick={() => filterWorkItems('todo')}
-              >
-                Todo
-              </FilterItemBtn>
-            </FilterItem>
-            {getCategories(workItems).map((category, i) => (
-              <FilterItem key={i}>
+          <FilterBtn onClick={() => setFiltering((prev) => !prev)}>
+            Filtrar contenido <BsFilterLeft />
+          </FilterBtn>
+          {isFiltering && (
+            <Filters>
+              <FilterItem>
                 <FilterItemBtn
-                  active={category === currentCategory ? true : false}
-                  onClick={() => filterWorkItems(category)}
+                  active={currentCategory === 'todo' ? true : false}
+                  onClick={() => filterWorkItems('todo')}
                 >
-                  {category}
+                  Todo
                 </FilterItemBtn>
               </FilterItem>
-            ))}
-          </Filters>
+              {getCategories(workItems).map((category, i) => (
+                <FilterItem key={i}>
+                  <FilterItemBtn
+                    active={category === currentCategory ? true : false}
+                    onClick={() => filterWorkItems(category)}
+                  >
+                    {category}
+                  </FilterItemBtn>
+                </FilterItem>
+              ))}
+            </Filters>
+          )}
         </>
       )}
     </FilterContainer>
@@ -64,20 +72,26 @@ const FilterContainer = styled.div`
   margin-bottom: 2rem;
 `
 
-const FilterTitle = styled(StyledButton)`
-  cursor: text;
+const FilterBtn = styled(StyledButton)`
   margin-bottom: 0.25rem;
+
+  & > * {
+    vertical-align: middle;
+    font-size: 1.25rem;
+  }
 `
 
 const Filters = styled.ul`
   list-style: none;
+  max-height: 120px;
+  overflow-y: auto;
 `
 
 const FilterItem = styled.li`
   color: #181818;
   display: inline-block;
   font-size: 1rem;
-  margin-right: 0.25rem;
+  margin: 0 0.25rem 0.25rem 0;
 `
 
 const FilterItemBtn = styled(StyledButton)`

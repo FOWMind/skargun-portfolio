@@ -10,5 +10,6 @@ const StyledTitle = styled.h2(
   font-family: inherit;
   font-size: ${props.featured ? '3rem' : '2rem'};
   font-weight: 400;
+  padding: 1rem 0;
 `
 )

@@ -26,7 +26,7 @@ const StyledNotesListItem = styled.p`
   display: inline-block;
   font-size: 1.25rem;
   margin: 0 0.5rem 0.5rem 0;
-  padding: 0 0.5rem;
+  padding: 0.5rem;
 
   &:last-of-type {
     margin-right: 0;

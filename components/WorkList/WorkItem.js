@@ -5,12 +5,12 @@ import Link from 'next/link'
 import { StyledImage } from '../Layout/Image'
 
 // Utils
-import { removeHttp } from '../../utils'
+import { removeHttp, replaceSlug } from '../../utils'
 
 export default function WorkItem({ work }) {
   return (
     <StyledWorkItem>
-      <Link href={`/work/${work.id}`}>
+      <Link href={`/work/${replaceSlug(work.slug || work.title || work.id)}`}>
         <a>
           {work.featuredImage && (
             <StyledWorkItemImage
@@ -23,10 +23,10 @@ export default function WorkItem({ work }) {
       </Link>
 
       <StyledWorkItemInfo>
-        <Link href={`/work/${work.id}`}>
+        <Link href={`/work/${replaceSlug(work.slug || work.title || work.id)}`}>
           <a>
-            <StyledWorkItemInfoTitle title={work.title}>
-              {work.title}
+            <StyledWorkItemInfoTitle title={work.title || 'Sin nombre'}>
+              {work.title || 'Sin nombre'}
             </StyledWorkItemInfoTitle>
           </a>
         </Link>
@@ -84,7 +84,7 @@ const StyledWorkItem = styled.div`
     }
 
     div {
-      bottom: 0;
+      bottom: -0.1%; // Fix a bug with browser
       transition-duration: 0.3s;
     }
   }
@@ -127,7 +127,7 @@ const StyledWorkItemInfo = styled.div`
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(5px);
-  padding: 0 1rem;
+  padding: 1rem;
   text-transform: uppercase;
   color: #fff;
   transition: bottom ease-in-out 0.5s;

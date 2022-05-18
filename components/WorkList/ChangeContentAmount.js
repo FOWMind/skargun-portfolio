@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { BsFillCaretUpFill, BsFillCaretDownFill } from 'react-icons/bs'
 
 // Components
 import { StyledButton } from '../Layout/Button'
@@ -20,11 +21,19 @@ export default function ChangeContentAmount({
     <>
       <BtnContainer>
         {filteredItemsLength > amountDisplayed && (
-          <Btn onClick={() => changeMaxAmount('more')}>Mostrar mas</Btn>
+          <Btn onClick={() => changeMaxAmount('more')} title="Mostrar más">
+            Mostrar mas
+            <BsFillCaretDownFill />
+          </Btn>
         )}
         {amountDisplayed > initialAmountDisplayed && (
-          <Btn less onClick={() => changeMaxAmount('less')}>
+          <Btn
+            less
+            onClick={() => changeMaxAmount('less')}
+            title="Mostrar menos"
+          >
             Mostrar menos
+            <BsFillCaretUpFill />
           </Btn>
         )}
       </BtnContainer>
@@ -42,6 +51,13 @@ const Btn = styled(StyledButton)`
 
   &:last-of-type {
     margin-right: 0;
+  }
+
+  & > * {
+    vertical-align: middle;
+    color: #181818;
+    margin-left: 0.25rem;
+    font-size: 1.25rem;
   }
 `
 

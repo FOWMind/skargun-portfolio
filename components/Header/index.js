@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import Link from 'next/link'
-import { useEffect } from 'react'
 
 // Components
 import { StyledButton } from '../Layout/Button'
@@ -8,10 +7,14 @@ import { StyledButton } from '../Layout/Button'
 export default function Header({ home }) {
   return (
     <Container>
-      <LogoContainer>
-        <LogoName>Skargun</LogoName>
-        <LogoDesc>Digital Artist & Animator</LogoDesc>
-      </LogoContainer>
+      <Link href="/">
+        <a>
+          <LogoContainer>
+            <LogoName>Skargun</LogoName>
+            <LogoDesc>Digital Artist & Animator</LogoDesc>
+          </LogoContainer>
+        </a>
+      </Link>
       <Navigation>
         {!home && (
           <NavigationButton>
@@ -36,7 +39,12 @@ const Container = styled.header`
 `
 
 // LOGO
-const LogoContainer = styled.div``
+const LogoContainer = styled.div`
+  margin-bottom: 1rem;
+  @media screen and (min-width: 700px) {
+    margin-bottom: 0;
+  }
+`
 
 const LogoSharedStyles = `
   color: #fff;
@@ -53,7 +61,7 @@ const LogoName = styled.h1`
 const LogoDesc = styled.p`
   ${LogoSharedStyles}
   font-size: 1.665rem;
-  margin-top: -3rem;
+  margin-top: -0.5rem;
 `
 
 // NAVIGATION
