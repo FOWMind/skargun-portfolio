@@ -12,13 +12,10 @@ export const works = [
       src: 'ballpong/preview.png',
     },
     images: [
-      { src: 'ballpong/boypong.png' },
-      { src: 'ballpong/girlpong_.png' },
-      { src: 'ballpong/cybercastle.png' },
-      { src: 'ballpong/bluebuild.png' },
-      { src: 'ballpong/bluebuild.png' },
-      { src: 'ballpong/bluebuild.png' },
-      { src: 'ballpong/bluebuild.png' },
+      { src: 'ballpong/boy-pong.png' },
+      { src: 'ballpong/girl-pong.png' },
+      { src: 'ballpong/cyber-castle.png' },
+      { src: 'ballpong/blue-build.png' },
     ],
     videos: [
       {
