@@ -1,10 +1,13 @@
 import styled from 'styled-components'
 import Image from 'next/image'
+import { useContext } from 'react'
+import { ThemeContext } from '../../contexts/ThemeContext'
 
 // Components
-import Button from '../Layout/Button'
+import { Button } from '../Layout/Button'
 
 export default function Error404() {
+  const { theme } = useContext(ThemeContext)
   return (
     <Container>
       <Image
@@ -15,8 +18,8 @@ export default function Error404() {
         height="300"
         alt=""
       />
-      <ErrorTitle>Lo sentimos</ErrorTitle>
-      <ErrorText>
+      <ErrorTitle style={{ color: theme.featuredClr }}>Lo sentimos</ErrorTitle>
+      <ErrorText style={{ color: theme.mainClr }}>
         Al parecer el sitio que buscas no existe o se movio de lugar
       </ErrorText>
       <ErrorLink href="/">
@@ -34,7 +37,6 @@ const Container = styled.div`
 const ErrorTitle = styled.h1`
   font-size: 3rem;
   font-weight: 400;
-  color: #59eb9d;
 
   @media screen and (min-width: 500px) {
     font-size: 5rem;
@@ -43,7 +45,6 @@ const ErrorTitle = styled.h1`
 
 const ErrorText = styled.p`
   font-size: 1rem;
-  color: #fff;
 
   @media screen and (min-width: 500px) {
     font-size: 2rem;

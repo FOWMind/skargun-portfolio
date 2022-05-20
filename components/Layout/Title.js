@@ -1,15 +1,9 @@
 import styled from 'styled-components'
 
-export default function Title({ featured, children }) {
-  return <StyledTitle featured={featured}>{children}</StyledTitle>
-}
-
-const StyledTitle = styled.h2(
-  (props) => `
-  color: #fff;
+export const Title = styled.h2`
+  color: ${({ theme }) => theme.mainClr};
   font-family: inherit;
-  font-size: ${props.featured ? '3rem' : '2rem'};
+  font-size: ${({ featured }) => (featured ? '3rem' : '2rem')};
   font-weight: 400;
   padding: 1rem 0;
 `
-)

@@ -11,12 +11,12 @@ export default function Loading() {
 
 const LoadingContainer = styled.div`
   width: 100%;
+  fill: ${({ theme }) => theme.mainClr};
 `
 
 const styles = {
   ReactLoading: {
     margin: '2rem auto',
     width: '80px',
-    fill: '#fff',
   },
 }

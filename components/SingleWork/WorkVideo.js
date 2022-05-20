@@ -92,7 +92,7 @@ const StyledWorkVideo = styled.div`
 `
 
 const StyledWorkVideoDesc = styled.p`
-  color: #fff;
+  color: ${({ theme }) => theme.mainClr};
   font-weight: 400;
   font-size: 0.9rem;
   font-family: 'Montserrat', 'Koulen', sans-serif;

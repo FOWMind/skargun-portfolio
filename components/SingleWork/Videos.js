@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 // Components
-import Title from '../Layout/Title'
+import { Title } from '../Layout/Title'
 import WorkVideo from './WorkVideo'
 
 export default function Videos({ videos }) {

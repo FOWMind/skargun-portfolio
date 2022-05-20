@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { BsFillCaretUpFill, BsFillCaretDownFill } from 'react-icons/bs'
 
 // Components
-import { StyledButton } from '../Layout/Button'
+import { Button } from '../Layout/Button'
 
 export default function ChangeContentAmount({
   filteredItemsLength,
@@ -45,8 +45,11 @@ const BtnContainer = styled.div`
   text-align: center;
 `
 
-const Btn = styled(StyledButton)`
-  background-color: ${(props) => (props.less ? '#e8e8e8' : '#59EB9D')};
+const Btn = styled(Button)`
+  background-color: ${({ less, theme }) =>
+    less ? theme.filledTertiary.bg : theme.filledPrimary.bg};
+  color: ${({ less, theme }) =>
+    less ? theme.filledTertiary.clr : theme.filledPrimary.clr};
   margin-right: 0.5rem;
 
   &:last-of-type {
@@ -55,7 +58,8 @@ const Btn = styled(StyledButton)`
 
   & > * {
     vertical-align: middle;
-    color: #181818;
+    color: ${({ less, theme }) =>
+      less ? theme.filledTertiary.clr : theme.filledPrimary.clr};
     margin-left: 0.25rem;
     font-size: 1.25rem;
   }

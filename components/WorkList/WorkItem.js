@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import Link from 'next/link'
 
 // Components
-import { StyledImage } from '../Layout/Image'
+import { Image } from '../Layout/Image'
 
 // Utils
 import { removeHttp, replaceSlug } from '../../utils'
@@ -72,7 +72,6 @@ export default function WorkItem({ work }) {
 const StyledWorkItem = styled.div`
   width: 100%;
   margin-bottom: 10px;
-  box-shadow: 0 10px 25px 10px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
   overflow: hidden;
   position: relative;
@@ -112,7 +111,7 @@ const StyledWorkItem = styled.div`
   }
 `
 
-const StyledWorkItemImage = styled(StyledImage)`
+const StyledWorkItemImage = styled(Image)`
   object-fit: cover;
   transition: transform ease-in-out 0.3s;
 `
@@ -125,7 +124,7 @@ const StyledWorkItemInfo = styled.div`
   width: 100%;
   max-height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: ${({ theme }) => theme.filledPrimary.overlayBg};
   backdrop-filter: blur(5px);
   padding: 1rem;
   text-transform: uppercase;
@@ -159,5 +158,5 @@ const StyledWorkItemInfoLink = styled.a.attrs((props) => ({
 }))`
   text-decoration: underline;
   margin-left: 0.25rem;
-  color: #59eb9d;
+  color: ${({ theme }) => theme.filledPrimary.overlayClr};
 `

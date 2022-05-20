@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 // Components
-import Button from '../Layout/Button'
-import Title from '../Layout/Title'
+import { Button } from '../Layout/Button'
+import { Title } from '../Layout/Title'
 
 export default function WorkInfo({ workTitle, workRepo }) {
   return (

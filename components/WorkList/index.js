@@ -6,7 +6,7 @@ import { useFetch } from '../../hooks/'
 
 // Components
 import Filter from './Filter'
-import Title from '../Layout/Title'
+import { Title } from '../Layout/Title'
 import WorkContainer from './WorkContainer'
 import ChangeContentAmount from './ChangeContentAmount'
 import Loading from '../Layout/Loading'

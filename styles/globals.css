@@ -4,7 +4,6 @@ html,
 body {
   font-family: 'Koulen', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  background-color: #0d2829;
   line-height: 1.15;
 }
 
@@ -20,7 +19,7 @@ a {
 }
 
 *::selection {
-  background-color: #59eb9d;
+  background-color: #444;
 }
 
 /* *,

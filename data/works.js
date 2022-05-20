@@ -80,4 +80,116 @@ export const works = [
     ],
     notes: ['Entender concepto del juego'],
   },
+  {
+    id: 3,
+    category: 'animacion',
+    featuredImage: {
+      src: 'ballpong/preview.png',
+    },
+    images: [
+      { src: 'ballpong/boypong.png' },
+      { src: 'ballpong/girlpong_.png' },
+      { src: 'ballpong/cybercastle.png' },
+      { src: 'ballpong/bluebuild.png' },
+    ],
+    notes: ['Entender concepto del juego'],
+  },
+  {
+    id: 4,
+    category: 'animacion',
+    featuredImage: {
+      src: 'ballpong/preview.png',
+    },
+    images: [
+      { src: 'ballpong/boypong.png' },
+      { src: 'ballpong/girlpong_.png' },
+      { src: 'ballpong/cybercastle.png' },
+      { src: 'ballpong/bluebuild.png' },
+    ],
+    notes: ['Entender concepto del juego'],
+  },
+  {
+    id: 5,
+    category: 'animacion',
+    featuredImage: {
+      src: 'ballpong/preview.png',
+    },
+    images: [
+      { src: 'ballpong/boypong.png' },
+      { src: 'ballpong/girlpong_.png' },
+      { src: 'ballpong/cybercastle.png' },
+      { src: 'ballpong/bluebuild.png' },
+    ],
+    notes: ['Entender concepto del juego'],
+  },
+  {
+    id: 6,
+    category: 'animacion',
+    featuredImage: {
+      src: 'ballpong/preview.png',
+    },
+    images: [
+      { src: 'ballpong/boypong.png' },
+      { src: 'ballpong/girlpong_.png' },
+      { src: 'ballpong/cybercastle.png' },
+      { src: 'ballpong/bluebuild.png' },
+    ],
+    notes: ['Entender concepto del juego'],
+  },
+  {
+    id: 7,
+    category: 'animacion',
+    featuredImage: {
+      src: 'ballpong/preview.png',
+    },
+    images: [
+      { src: 'ballpong/boypong.png' },
+      { src: 'ballpong/girlpong_.png' },
+      { src: 'ballpong/cybercastle.png' },
+      { src: 'ballpong/bluebuild.png' },
+    ],
+    notes: ['Entender concepto del juego'],
+  },
+  {
+    id: 8,
+    category: 'animacion',
+    featuredImage: {
+      src: 'ballpong/preview.png',
+    },
+    images: [
+      { src: 'ballpong/boypong.png' },
+      { src: 'ballpong/girlpong_.png' },
+      { src: 'ballpong/cybercastle.png' },
+      { src: 'ballpong/bluebuild.png' },
+    ],
+    notes: ['Entender concepto del juego'],
+  },
+  {
+    id: 9,
+    category: 'animacion',
+    featuredImage: {
+      src: 'ballpong/preview.png',
+    },
+    images: [
+      { src: 'ballpong/boypong.png' },
+      { src: 'ballpong/girlpong_.png' },
+      { src: 'ballpong/cybercastle.png' },
+      { src: 'ballpong/bluebuild.png' },
+    ],
+    notes: ['Entender concepto del juego'],
+  },
+  {
+    id: 10,
+    category: 'animacion',
+    featuredImage: {
+      src: 'ballpong/preview.png',
+    },
+    images: [
+      { src: 'ballpong/boypong.png' },
+      { src: 'ballpong/girlpong_.png' },
+      { src: 'ballpong/cybercastle.png' },
+      { src: 'ballpong/bluebuild.png' },
+    ],
+    notes: ['Entender concepto del juego'],
+  },
 ]

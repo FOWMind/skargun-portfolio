@@ -2,7 +2,8 @@ import styled from 'styled-components'
 import { useRef } from 'react'
 import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from 'react-icons/bs'
 
-import { StyledImage } from '../Layout/Image'
+// Components
+import { Image } from '../Layout/Image'
 
 export default function Slider({ featuredImage, images }) {
   let currentPosition = 0
@@ -69,17 +70,20 @@ export default function Slider({ featuredImage, images }) {
       {images && (
         <Images ref={sliderRef}>
           {featuredImage && (
-            <ImageWrapperButton onClick={() => SlideSet(0)}>
-              <Image
+            <StyledSliderImageBtn onClick={() => SlideSet(0)}>
+              <StyledSliderImage
                 src={`/img/works/${featuredImage.src}`}
                 alt={featuredImage.alt || ''}
               />
-            </ImageWrapperButton>
+            </StyledSliderImageBtn>
           )}
           {images.map((img, i) => (
-            <ImageWrapperButton key={i} onClick={() => SlideSet(i + 1)}>
-              <Image src={`/img/works/${img.src}` || ''} alt={img.alt || ''} />
-            </ImageWrapperButton>
+            <StyledSliderImageBtn key={i} onClick={() => SlideSet(i + 1)}>
+              <StyledSliderImage
+                src={`/img/works/${img.src}` || ''}
+                alt={img.alt || ''}
+              />
+            </StyledSliderImageBtn>
           ))}
         </Images>
       )}
@@ -87,7 +91,7 @@ export default function Slider({ featuredImage, images }) {
   )
 }
 
-const ImageWrapperButton = styled.button.attrs((props) => ({
+const StyledSliderImageBtn = styled.button.attrs((props) => ({
   ...props,
 }))`
   outline: none;
@@ -145,7 +149,7 @@ const FeaturedImageContainer = styled.div`
   position: relative;
   width: 100%;
   height: 60vw;
-  background-color: #1b5052;
+  background-color: ${({ theme }) => theme.filledSecondary.bg};
 
   @media screen and (min-width: 700px) {
     height: 40vw;
@@ -210,7 +214,7 @@ const SlideBtnContainer = styled.div`
 
   &:hover {
     transition-delay: 1s;
-    background-color: rgba(13, 40, 41, 0.25);
+    background-color: ${({ theme }) => theme.filledSecondary.overlayBg};
     backdrop-filter: blur(2px);
   }
 `
@@ -230,7 +234,7 @@ const SlideBtn = styled.button.attrs((props) => ({
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 100;
-  background-color: #1b5052;
+  background-color: ${({ theme }) => theme.filledSecondary.bg};
   border-radius: 50px; // Hide the background-color from borders
   color: #fff;
   vertical-align: middle;
@@ -271,7 +275,7 @@ const FeaturedImage = styled.img`
 
 const Images = styled.div``
 
-const Image = styled(StyledImage)`
+const StyledSliderImage = styled(Image)`
   width: 100%;
   height: 100%;
   display: block;

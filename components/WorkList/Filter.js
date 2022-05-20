@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { useState } from 'react'
-import { StyledButton } from '../Layout/Button'
+import { Button } from '../Layout/Button'
 import { BsFilterLeft } from 'react-icons/bs'
 
 export default function Filter({
@@ -72,7 +72,7 @@ const FilterContainer = styled.div`
   margin-bottom: 2rem;
 `
 
-const FilterBtn = styled(StyledButton)`
+const FilterBtn = styled(Button)`
   margin-bottom: 0.25rem;
 
   & > * {
@@ -94,7 +94,9 @@ const FilterItem = styled.li`
   margin: 0 0.25rem 0.25rem 0;
 `
 
-const FilterItemBtn = styled(StyledButton)`
-  background-color: ${(props) => (props.active ? '#1b5052' : '#e8e8e8')};
-  color: ${(props) => (props.active ? '#fff' : '#181818')};
+const FilterItemBtn = styled(Button)`
+  background-color: ${({ active, theme }) =>
+    active ? theme.filledSecondary.bg : theme.filledTertiary.bg};
+  color: ${({ active, theme }) =>
+    active ? theme.filledSecondary.clr : theme.filledTertiary.clr};
 `

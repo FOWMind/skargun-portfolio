@@ -1,10 +1,25 @@
 import styled from 'styled-components'
 import Link from 'next/link'
+import { isEqual } from 'lodash'
+import { useContext } from 'react'
+import { ThemeContext, themes } from '../../contexts/ThemeContext'
 
 // Components
-import { StyledButton } from '../Layout/Button'
+import { Button } from '../Layout/Button'
+import Toggle from '../Layout/Toggle'
 
 export default function Header({ home }) {
+  const { theme, toggleTheme } = useContext(ThemeContext)
+  const HandleToggleClick = (setState) => {
+    toggleTheme()
+    setState((prev) => !prev)
+  }
+
+  const HandleToggleInit = (setState) => {
+    const currentThemeValue = isEqual(theme, themes.dark)
+    setState(currentThemeValue)
+  }
+
   return (
     <Container>
       <Link href="/">
@@ -24,6 +39,7 @@ export default function Header({ home }) {
           </NavigationButton>
         )}
         <NavigationButton>Ver Curriculum</NavigationButton>
+        <Toggle onInit={HandleToggleInit} onClick={HandleToggleClick} />
       </Navigation>
     </Container>
   )
@@ -47,19 +63,20 @@ const LogoContainer = styled.div`
 `
 
 const LogoSharedStyles = `
-  color: #fff;
   text-transform: uppercase;
   font-weight: 400;
 `
 
 const LogoName = styled.h1`
   ${LogoSharedStyles}
+  color: ${({ theme }) => theme.mainClr};
   font-size: 5rem;
   display: block;
 `
 
 const LogoDesc = styled.p`
   ${LogoSharedStyles}
+  color: ${({ theme }) => theme.mainClr};
   font-size: 1.665rem;
   margin-top: -0.5rem;
 `
@@ -67,7 +84,7 @@ const LogoDesc = styled.p`
 // NAVIGATION
 const Navigation = styled.nav``
 
-const NavigationButton = styled(StyledButton)`
+const NavigationButton = styled(Button)`
   margin-right: 1rem;
 
   &:last-of-type {

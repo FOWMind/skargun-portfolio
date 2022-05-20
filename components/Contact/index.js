@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 // Components
-import Title from '../Layout/Title'
+import { Title } from '../Layout/Title'
 
 export default function Contact() {
   return (
@@ -12,16 +12,19 @@ export default function Contact() {
         <ContactItem>
           <ContactItemText>
             Correo:{' '}
-            <FeaturedLink href="mailto:skargun@gmail.com">
-              Skargun@gmail.com
+            <FeaturedLink href="mailto:oskricatura@gmail.com">
+              oskricatura@gmail.com
             </FeaturedLink>
           </ContactItemText>
         </ContactItem>
         <ContactItem>
           <ContactItemText>
             Instagram:{' '}
-            <FeaturedLink href="https://instagram.com/skargun/" target="_blank">
-              @Skargun
+            <FeaturedLink
+              href="https://www.instagram.com/osquipitos/"
+              target="_blank"
+            >
+              @osquipitos
             </FeaturedLink>
           </ContactItemText>
         </ContactItem>
@@ -56,8 +59,8 @@ const ContactItem = styled.li`
 
 const ContactItemText = styled.span`
   display: inline-block;
-  color: #fff;
-  background-color: #1b5052;
+  color: ${({ theme }) => theme.filledSecondary.clr};
+  background-color: ${({ theme }) => theme.filledSecondary.bg};
   text-transform: uppercase;
   font-size: 1.15rem;
   font-weight: 400;
@@ -65,7 +68,7 @@ const ContactItemText = styled.span`
 `
 
 const FeaturedLink = styled.a`
-  color: #59eb9d;
+  color: ${({ theme }) => theme.filledSecondary.featuredClr};
   font-weight: 400;
   text-decoration: none;
 `
@@ -94,7 +97,7 @@ const ContactDescriptionImage = styled.img.attrs((props) => ({
 `
 
 const ContactDescriptionText = styled.p`
-  color: #fff;
+  color: ${({ theme }) => theme.mainClr};
   text-transform: uppercase;
   font-size: 0.9rem;
   font-weight: 400;

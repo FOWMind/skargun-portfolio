@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Layout } from '../AppLayout'
-import Button from '../Layout/Button'
+import { Button } from '../Layout/Button'
 
 export default function Footer() {
   return (
@@ -14,7 +14,7 @@ export default function Footer() {
 }
 
 const StyledFooter = styled.footer`
-  background-color: #1b5052;
+  background-color: ${({ theme }) => theme.filledSecondary.bg};
 `
 
 const FooterLayout = styled(Layout)`
