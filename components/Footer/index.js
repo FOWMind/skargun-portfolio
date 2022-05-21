@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 import { Layout } from '../AppLayout'
-import { Button } from '../Layout/Button'
+import CVButton from '../Layout/CVButton'
 
 export default function Footer() {
   return (
     <StyledFooter>
       <FooterLayout>
         <FooterTitle>Skargun</FooterTitle>
-        <Button>Ver Curriculum</Button>
+        <CVButton />
       </FooterLayout>
     </StyledFooter>
   )

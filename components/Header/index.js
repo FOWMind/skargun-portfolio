@@ -7,9 +7,11 @@ import { ThemeContext, themes } from '../../contexts/ThemeContext'
 // Components
 import { Button } from '../Layout/Button'
 import Toggle from '../Layout/Toggle'
+import CVButton from '../Layout/CVButton'
 
 export default function Header({ home }) {
   const { theme, toggleTheme } = useContext(ThemeContext)
+
   const HandleToggleClick = (setState) => {
     toggleTheme()
     setState((prev) => !prev)
@@ -38,7 +40,7 @@ export default function Header({ home }) {
             </Link>
           </NavigationButton>
         )}
-        <NavigationButton>Ver Curriculum</NavigationButton>
+        <CVButton style={StyledCVButton} />
         <Toggle onInit={HandleToggleInit} onClick={HandleToggleClick} />
       </Navigation>
     </Container>
@@ -85,9 +87,13 @@ const LogoDesc = styled.p`
 const Navigation = styled.nav``
 
 const NavigationButton = styled(Button)`
-  margin-right: 1rem;
+  margin: 0 1rem 1rem 0;
 
   &:last-of-type {
     margin-right: 0;
   }
 `
+
+const StyledCVButton = {
+  margin: '0 1rem 1rem 0',
+}
