@@ -12,7 +12,7 @@ export default function WorkContainer({ filteredItems, amountDisplayed }) {
             : filteredItems.length
         )
         .map((work) => (
-          <WorkItem key={work.id} work={work} />
+          <WorkItem key={work._id} work={work} />
         ))}
     </StyledWorkContainer>
   )

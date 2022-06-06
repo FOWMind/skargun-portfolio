@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { useState, useEffect } from 'react'
 
 // Hooks
-import { useFetch } from '../../hooks/'
+import { useGet } from '../../hooks/httpHooks'
 
 // Components
 import Filter from './Filter'
@@ -18,7 +18,7 @@ export default function WorkList() {
   const [workItems, setWorkItems] = useState(null)
   const [currentCategory, setCurrentCategory] = useState('todo')
   const [filteredItems, setFilteredItems] = useState(null)
-  const { data, loadState } = useFetch('/api/work')
+  const { data, loadState } = useGet('http://localhost:3001/api/works')
 
   useEffect(() => {
     if (data) {

@@ -3,11 +3,11 @@ export const works = [
     id: 0,
     category: '2d',
     title: 'Sprites para juego 2D',
+    slug: 'sprites-para juEgo-2d',
     repo: {
       url: 'https://github.com/',
       demoUrl: 'https://user.github.io/',
     },
-    slug: 'sprites-para juEgo-2d',
     featuredImage: {
       src: 'ballpong/preview.png',
     },

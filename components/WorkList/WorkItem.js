@@ -8,9 +8,12 @@ import { Image } from '../Layout/Image'
 import { removeHttp, replaceSlug } from '../../utils'
 
 export default function WorkItem({ work }) {
+  // const workHref = `/work/${
+  //   work.slug ? replaceSlug(work.slug) : `/id/${work._id}`
+  // }`
   return (
     <StyledWorkItem>
-      <Link href={`/work/${replaceSlug(work.slug || work.title || work.id)}`}>
+      <Link href={`/work/${work.slug}`}>
         <a>
           {work.featuredImage && (
             <StyledWorkItemImage
@@ -23,7 +26,7 @@ export default function WorkItem({ work }) {
       </Link>
 
       <StyledWorkItemInfo>
-        <Link href={`/work/${replaceSlug(work.slug || work.title || work.id)}`}>
+        <Link href={`/work/${work.slug}`}>
           <a>
             <StyledWorkItemInfoTitle title={work.title || 'Sin nombre'}>
               {work.title || 'Sin nombre'}

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 // Hooks
-import { useFetch } from '../../hooks'
+import { useGet } from '../../hooks/httpHooks'
 
 // Components
 import AppLayout from '../../components/AppLayout'
@@ -20,7 +20,9 @@ export default function SingleWork() {
   const [currentWork, setCurrentWork] = useState([])
   const { id } = useRouter().query
   const { title, repo, notes, featuredImage, images, videos } = currentWork
-  const { data, loadState } = useFetch(`/api/work/${encodeURIComponent(id)}`)
+  const { data, loadState } = useGet(
+    `http://localhost:3001/api/work/${encodeURIComponent(id)}`
+  )
 
   useEffect(() => {
     if (data) {

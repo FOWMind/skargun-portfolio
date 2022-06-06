@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-export function useFetch(url) {
+function useGet(url) {
   const [data, setData] = useState([])
   const [loadState, setLoadState] = useState('idle')
 
@@ -10,8 +10,11 @@ export function useFetch(url) {
       .then((res) => res.json())
       .then((data) => {
         setData(data)
+        console.log(data)
       })
       .finally(() => setLoadState('finished'))
   }, [url])
   return { data, loadState }
 }
+
+export { useGet }
