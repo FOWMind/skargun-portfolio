@@ -1,0 +1,199 @@
+import styled from 'styled-components'
+
+export default function DashboardSingleWork({
+  id,
+  title,
+  category,
+  slug,
+  repo,
+  featuredImage,
+  images,
+  videos,
+  notes,
+}) {
+  const formatWorkText = (str) => str?.toString()
+
+  const renderType = {
+    default: 0,
+    link: 1,
+    list: 2,
+    listOfImages: 3,
+    listOfVideos: 4,
+  }
+  const RenderWorkItem = (name, item, type = renderType.default) => {
+    if (!item) return
+    let content
+
+    if (type === renderType.default) {
+      content = <FeaturedText>{formatWorkText(item)}</FeaturedText>
+    }
+
+    // Link render
+    if (type === renderType.link) {
+      content = (
+        <FeaturedText>
+          {item ? (
+            <WorkLink href={item} target="_blank">
+              {formatWorkText(item)}
+            </WorkLink>
+          ) : (
+            textLack
+          )}
+        </FeaturedText>
+      )
+    }
+
+    // Plain text list render
+    if (type === renderType.list) {
+      content = (
+        <WorkUl>
+          {item.map((listItem, i) => (
+            <WorkUlItem key={listItem.id || i}>{listItem}</WorkUlItem>
+          ))}
+        </WorkUl>
+      )
+    }
+
+    // Images list render
+    if (type === renderType.listOfImages) {
+      content = (
+        <WorkUl>
+          {item.map((img, i) => (
+            <WorkUlItem key={img.id || i}>
+              <WorkLink href={`/img/works/${img.src}`} target="_blank">
+                {img.src}
+              </WorkLink>
+            </WorkUlItem>
+          ))}
+        </WorkUl>
+      )
+    }
+
+    // Videos list render
+    if (type === renderType.listOfVideos) {
+      content = (
+        <>
+          {item.map((video, i) => (
+            <WorkUl key={video.id || i}>
+              {video.platform ? (
+                <WorkUlItem>
+                  {video.platform === 'youtube' && (
+                    <WorkLink
+                      href={`https://youtu.be/${video.videoId}`}
+                      target="_blank"
+                    >{`https://youtu.be/${video.videoId}`}</WorkLink>
+                  )}
+                  {video.platform === 'vimeo' && (
+                    <WorkLink
+                      href={`https://player.vimeo.com/video/${video.videoId}`}
+                      target="_blank"
+                    >{`https://player.vimeo.com/video/${video.videoId}`}</WorkLink>
+                  )}
+                </WorkUlItem>
+              ) : (
+                <WorkUlItem>
+                  <WorkLink href={video.url} target="_blank">
+                    {video.url}
+                  </WorkLink>
+                </WorkUlItem>
+              )}
+            </WorkUl>
+          ))}
+        </>
+      )
+    }
+
+    return (
+      <WorkText title={formatWorkText(item)}>
+        <NormalText>{name}: </NormalText>
+        {content}
+      </WorkText>
+    )
+  }
+
+  return (
+    <WorkContainer>
+      <WorkImage src={`/img/works/${featuredImage.src}`} alt="" />
+      {RenderWorkItem('ID', id)}
+      {RenderWorkItem('Título', title)}
+      {RenderWorkItem('Categoría', category)}
+      {RenderWorkItem('Slug/URL', slug)}
+      {RenderWorkItem('Repositorio', repo?.url, renderType.link)}
+      {RenderWorkItem('Demo', repo?.demoUrl, renderType.link)}
+      {RenderWorkItem('Imágenes', images, renderType.listOfImages)}
+      {RenderWorkItem('Videos', videos, renderType.listOfVideos)}
+      {RenderWorkItem('Notas', notes, renderType.list)}
+    </WorkContainer>
+  )
+}
+
+const WorkContainer = styled.div`
+  display: block;
+  width: 24%;
+  margin-right: 1.33%;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #f2f2f2;
+
+  &:nth-of-type(4n) {
+    margin-right: 0;
+  }
+`
+
+const WorkImage = styled.img`
+  width: 100%;
+  display: block;
+  border-radius: 20px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+`
+
+const WorkText = styled.div`
+  font-size: 1rem;
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: 0.25rem;
+`
+
+const WorkLink = styled.a`
+  text-decoration: underline;
+  color: #87c754;
+
+  &:hover {
+    text-decoration: none;
+  }
+`
+
+const NormalText = styled.span`
+  font-weight: 500;
+`
+
+const FeaturedText = styled.strong`
+  font-weight: 700;
+  color: #87c754;
+`
+
+const WorkUl = styled.ul`
+  margin-bottom: 0.25rem;
+  padding-left: 2rem;
+  list-style: disc;
+`
+
+const WorkUlItem = styled.li`
+  display: block;
+  max-width: 100%;
+  white-space: pre-wrap;
+  position: relative;
+
+  &::before {
+    content: '-';
+    font-weight: 700;
+    position: absolute;
+    top: auto;
+    left: -0.6rem;
+  }
+`

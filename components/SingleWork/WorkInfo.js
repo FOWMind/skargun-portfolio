@@ -4,18 +4,18 @@ import styled from 'styled-components'
 import { Button } from '../Layout/Button'
 import { Title } from '../Layout/Title'
 
-export default function WorkInfo({ workTitle, workRepo }) {
+export default function WorkInfo({ workTitle, workRepository }) {
   return (
     <StyledWorkInfo>
       <Title featured>{workTitle}</Title>
-      {workRepo?.url && (
-        <StyledWorkInfoLink href={workRepo.url} target="_blank">
+      {workRepository?.url && (
+        <StyledWorkInfoLink href={workRepository.url} target="_blank">
           <Button>Ver repositorio</Button>
         </StyledWorkInfoLink>
       )}
 
-      {workRepo?.demoUrl && (
-        <StyledWorkInfoLink href={workRepo.demoUrl} target="_blank">
+      {workRepository?.demoUrl && (
+        <StyledWorkInfoLink href={workRepository.demoUrl} target="_blank">
           <Button>Probar DEMO</Button>
         </StyledWorkInfoLink>
       )}

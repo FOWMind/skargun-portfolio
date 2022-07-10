@@ -16,4 +16,5 @@ export default MyApp
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.mainBg};
+  min-height: 100vh;
 `

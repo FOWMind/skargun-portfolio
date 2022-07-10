@@ -9,14 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.5",
+    "formik": "^2.2.9",
     "lodash": "^4.17.21",
     "next": "12.1.6",
+    "node-fetch": "^3.2.6",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-icons": "^4.3.1",
     "react-loading": "^2.0.3",
     "react-pdfobject": "^1.2.0",
-    "styled-components": "^5.3.5"
+    "react-popper": "^2.3.0",
+    "styled-components": "^5.3.5",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "eslint": "8.15.0",

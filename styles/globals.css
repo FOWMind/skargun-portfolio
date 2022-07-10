@@ -19,7 +19,7 @@ a {
 }
 
 *::selection {
-  background-color: #444;
+  background: #444;
 }
 
 /* *,

@@ -6,6 +6,8 @@ function useCreateEdit(RequestUrl, RequestMethod, RequestBody) {
   const [loadState, setLoadState] = useState('idle')
 
   useEffect(() => {
+    if (!RequestUrl || !RequestMethod || !RequestBody) return
+
     setLoadState('inProgress')
     fetch(RequestUrl, {
       method: RequestMethod,
@@ -13,10 +15,7 @@ function useCreateEdit(RequestUrl, RequestMethod, RequestBody) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        ...RequestBody,
-        apiKey: API_KEY,
-      }),
+      body: JSON.stringify(RequestBody),
     })
       .then((res) => res.json())
       .then((data) => {

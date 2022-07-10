@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import { useState, useEffect } from 'react'
 
-// Hooks
-import { useGet } from '../../hooks/httpHooks'
+// Constants
+import { LOAD_STATES } from '../../utils/constants'
 
 // Components
 import Filter from './Filter'
@@ -13,19 +13,18 @@ import Loading from '../Layout/Loading'
 
 const initialAmountDisplayed = 6
 
-export default function WorkList() {
+export default function WorkList({ works, loadState }) {
   const [amountDisplayed, setAmountDisplayed] = useState(initialAmountDisplayed)
   const [workItems, setWorkItems] = useState(null)
   const [currentCategory, setCurrentCategory] = useState('todo')
   const [filteredItems, setFilteredItems] = useState(null)
-  const { data, loadState } = useGet('http://localhost:3001/api/works')
 
   useEffect(() => {
-    if (data) {
-      setWorkItems(data)
-      setFilteredItems(data)
+    if (works) {
+      setWorkItems(works)
+      setFilteredItems(works)
     }
-  }, [data])
+  }, [works])
 
   return (
     <Wrapper>
@@ -41,9 +40,9 @@ export default function WorkList() {
         />
       )}
 
-      {loadState === 'inProgress' && <Loading />}
+      {loadState === LOAD_STATES.IN_PROGRESS && <Loading />}
 
-      {loadState === 'finished' && filteredItems?.length > 0 && (
+      {loadState === LOAD_STATES.FINISHED && filteredItems?.length > 0 && (
         <>
           <Title featured>Portafolio</Title>
           <WorkContainer

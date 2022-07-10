@@ -8,9 +8,6 @@ import { Image } from '../Layout/Image'
 import { removeHttp, replaceSlug } from '../../utils'
 
 export default function WorkItem({ work }) {
-  // const workHref = `/work/${
-  //   work.slug ? replaceSlug(work.slug) : `/id/${work._id}`
-  // }`
   return (
     <StyledWorkItem>
       <Link href={`/work/${work.slug}`}>
