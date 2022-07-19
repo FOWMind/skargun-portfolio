@@ -113,7 +113,9 @@ export default function DashboardSingleWork({
 
   return (
     <WorkContainer>
-      <WorkImage src={`/img/works/${featuredImage.src}`} alt="" />
+      {featuredImage && (
+        <WorkImage src={`/img/works/${featuredImage.src}`} alt="" />
+      )}
       {RenderWorkItem('ID', id)}
       {RenderWorkItem('Título', title)}
       {RenderWorkItem('Categoría', category)}
@@ -129,15 +131,37 @@ export default function DashboardSingleWork({
 
 const WorkContainer = styled.div`
   display: block;
-  width: 24%;
-  margin-right: 1.33%;
+  width: 100%;
   margin-bottom: 1rem;
   padding: 1rem;
   border-radius: 10px;
   background-color: #f2f2f2;
 
-  &:nth-of-type(4n) {
-    margin-right: 0;
+  @media screen and (min-width: 600px) and (max-width: 1023px) {
+    width: 49%;
+    margin-right: 2%;
+
+    &:nth-of-type(2n) {
+      margin-right: 0;
+    }
+  }
+
+  @media screen and (min-width: 1024px) and (max-width: 1359px) {
+    width: 32%;
+    margin-right: 2%;
+
+    &:nth-of-type(3n) {
+      margin-right: 0;
+    }
+  }
+
+  @media screen and (min-width: 1360px) {
+    width: 24%;
+    margin-right: 1.33%;
+
+    &:nth-of-type(4n) {
+      margin-right: 0;
+    }
   }
 `
 
@@ -152,10 +176,6 @@ const WorkImage = styled.img`
 const WorkText = styled.div`
   font-size: 1rem;
   display: block;
-  max-width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   margin-bottom: 0.25rem;
 `
 

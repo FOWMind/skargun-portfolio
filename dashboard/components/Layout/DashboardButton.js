@@ -1,10 +1,6 @@
 import styled from 'styled-components'
 
-export default function DashboardButton(props) {
-  return <StyledButton {...props} />
-}
-
-const StyledButton = styled.button`
+const DashboardButton = styled.button`
   outline: none;
   border: 2px solid transparent;
   border-radius: 10px;
@@ -16,7 +12,6 @@ const StyledButton = styled.button`
 
   display: inline-block;
   cursor: pointer;
-  margin-top: 1rem;
   background-color: #000;
   color: #fff;
 
@@ -28,4 +23,4 @@ const StyledButton = styled.button`
   }
 `
 
-export { StyledButton }
+export { DashboardButton }

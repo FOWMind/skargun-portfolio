@@ -1,14 +1,17 @@
 import styled from 'styled-components'
 import '../styles/globals.css'
 import { ThemeProvider } from '../contexts/ThemeContext'
+import { DataProvider } from '../contexts/DataContext'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ThemeProvider>
-      <Wrapper>
-        <Component {...pageProps} />
-      </Wrapper>
-    </ThemeProvider>
+    <DataProvider>
+      <ThemeProvider>
+        <Wrapper>
+          <Component {...pageProps} />
+        </Wrapper>
+      </ThemeProvider>
+    </DataProvider>
   )
 }
 

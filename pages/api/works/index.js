@@ -4,7 +4,7 @@ const { API } = require('../../../utils/constants')
 export default function handler(req, res) {
   if (req.method === 'POST') {
     const work = req.body
-    return fetch('http://localhost:3001/api/works', {
+    return fetch(`${API.URL}/${API.ENDPOINTS.CREATE_SINGLE_WORK}`, {
       method: 'POST',
       body: work,
       headers: {
@@ -12,6 +12,16 @@ export default function handler(req, res) {
         'Content-Type': 'application/json',
       },
     })
+      .then((response) => {
+        if (response.ok) {
+          return response.json()
+        }
+        return reject(response)
+      })
+      .then((data) => res.status(200).json(data))
+      .catch((error) => res.status(405).json(error))
+  } else if (req.method === 'GET') {
+    return fetch(`${API.URL}/${API.ENDPOINTS.VIEW_WORKS}`)
       .then((response) => {
         if (response.ok) {
           return response.json()

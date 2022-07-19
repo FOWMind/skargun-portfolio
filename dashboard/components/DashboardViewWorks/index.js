@@ -1,21 +1,33 @@
 import styled from 'styled-components'
-import { useState } from 'react'
+import { useEffect, useContext } from 'react'
 
-// Data
-import { works as data } from '../../../data'
+// Contexts
+import { DataContext } from '../../../contexts/DataContext'
+
+// Constants
+import { LOAD_STATES } from '../../../utils/constants'
 
 // Components
 import { DashboardTitle } from '../Layout/DashboardTitle'
 import DashboardSingleWork from '../DashboardSingleWork'
+import Loading from '../../../components/Layout/Loading'
 
 export default function DashboardViewWorks() {
-  const [works, setWorks] = useState(data)
+  const {
+    data: { works, worksLoadState },
+  } = useContext(DataContext)
+
+  useEffect(() => {
+    console.log(works, worksLoadState)
+  }, [works, worksLoadState])
 
   return (
     <Container>
       <DashboardViewWorksTitle>Trabajos</DashboardViewWorksTitle>
       <WorksContainer>
+        {worksLoadState === LOAD_STATES.IN_PROGRESS && <Loading color="#000" />}
         {works &&
+          worksLoadState === LOAD_STATES.FINISHED &&
           works.map((work, i) => (
             <DashboardSingleWork key={work.id || i} {...work} />
           ))}

@@ -50,15 +50,18 @@ export default function DashboardSidebar({
 }
 
 const Sidebar = styled.aside`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  max-width: 25ch;
-  height: 100vh;
-  overflow: auto;
   background-color: #fff;
   padding: 2rem;
+
+  @media screen and (min-width: 800px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 25ch;
+    height: 100vh;
+    overflow: auto;
+  }
 `
 
 const SidebarTitle = styled.h1`

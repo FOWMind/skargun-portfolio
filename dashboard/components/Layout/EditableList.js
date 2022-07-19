@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 
 // Components
 import Input from './Input'
-import { StyledButton as DashboardButton } from './DashboardButton'
+import { DashboardButton } from './DashboardButton'
 import { Error } from './Error'
 
 export default function EditableList({
@@ -15,11 +15,9 @@ export default function EditableList({
   elements,
   elementsError,
   currentElementValue,
+  currentElementError,
   listEmptyText,
 }) {
-  useEffect(() => {
-    console.log(currentElementValue)
-  }, [currentElementValue])
   return (
     <FieldArray name={listName}>
       {(arrayHelpers) => (
@@ -32,7 +30,8 @@ export default function EditableList({
               type="button"
               onClick={() => {
                 const validElement = currentElementValue.trim()
-                if (!validElement) return
+                console.log(validElement)
+                if (!validElement || currentElementError) return
                 return arrayHelpers.push(validElement)
               }}
             >

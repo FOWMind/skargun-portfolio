@@ -16,7 +16,12 @@ export default function DashboardMainContent({ activeSection }) {
 }
 
 const Main = styled.main`
-  padding: 2rem 5ch 2rem 30ch;
+  padding: 2rem;
   background-color: #fff;
   min-height: 100vh;
+
+  @media screen and (min-width: 800px) {
+    padding-left: 30ch;
+    padding-right: 5ch;
+  }
 `

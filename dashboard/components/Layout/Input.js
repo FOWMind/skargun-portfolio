@@ -4,11 +4,11 @@ import { useField } from 'formik'
 // Components
 import { Error } from './Error'
 
-export default function Input({ ...props }) {
+export default function Input({ hidden, innerRef, ...props }) {
   const [field, meta] = useField(props)
   return (
     <>
-      <StyledInput {...field} {...props} />
+      <StyledInput {...field} {...props} ref={innerRef} hidden={hidden} />
       {meta.touched && meta.error ? <Error>{meta.error}</Error> : null}
     </>
   )
@@ -24,7 +24,7 @@ const StyledInput = styled.input`
   font-size: 0.9rem;
   font-weight: 500;
 
-  display: block;
+  display: ${({ hidden }) => (hidden ? 'none' : 'block')};
   width: 100%;
   background-color: #f2f2f2;
   color: #181616;

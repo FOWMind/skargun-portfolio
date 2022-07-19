@@ -1,8 +1,8 @@
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
+import { useContext } from 'react'
 
-// Utils
-import { API, LOAD_STATES } from '../utils/constants'
+// Contexts
+import { DataContext } from '../contexts/DataContext'
 
 // Components
 import AppLayout from '../components/AppLayout'
@@ -11,11 +11,10 @@ import WorkList from '../components/WorkList'
 import Contact from '../components/Contact'
 import Footer from '../components/Footer'
 
-export default function Home({ works }) {
-  const [loadState, setLoadState] = useState(LOAD_STATES.IN_PROGRESS)
-  useEffect(() => {
-    if (works) setLoadState(LOAD_STATES.FINISHED)
-  }, [works, loadState, setLoadState])
+export default function Home() {
+  const {
+    data: { works, worksLoadState },
+  } = useContext(DataContext)
   return (
     <>
       <Head>
@@ -26,21 +25,11 @@ export default function Home({ works }) {
       <AppLayout>
         <Header home />
         <main>
-          <WorkList works={works} loadState={loadState} />
+          <WorkList works={works} loadState={worksLoadState} />
           <Contact />
         </main>
       </AppLayout>
       <Footer />
     </>
   )
-}
-
-export async function getStaticProps() {
-  const res = await fetch(`${API.URL}/${API.ENDPOINTS.VIEW_WORKS}`)
-  const data = await res.json()
-  return {
-    props: {
-      works: data,
-    },
-  }
 }
