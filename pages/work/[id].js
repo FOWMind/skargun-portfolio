@@ -1,9 +1,8 @@
 import Head from 'next/head'
-import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
-// Hooks
-import { useFetch } from '../../hooks'
+// Utils
+import { API, LOAD_STATES } from '../../utils/constants'
 
 // Components
 import AppLayout from '../../components/AppLayout'
@@ -16,17 +15,18 @@ import Footer from '../../components/Footer'
 import Loading from '../../components/Layout/Loading'
 import Error404 from '../../components/ErrorLayout/Error404'
 
-export default function SingleWork() {
+export default function SingleWork({ work }) {
   const [currentWork, setCurrentWork] = useState([])
-  const { id } = useRouter().query
-  const { title, repo, notes, featuredImage, images, videos } = currentWork
-  const { data, loadState } = useFetch(`/api/work/${encodeURIComponent(id)}`)
+  const [loadState, setLoadState] = useState(LOAD_STATES.IN_PROGRESS)
+  const { title, repository, notes, featuredImage, images, videos } =
+    currentWork
 
   useEffect(() => {
-    if (data) {
-      setCurrentWork(data)
+    if (work) {
+      setCurrentWork(work)
+      setLoadState(LOAD_STATES.FINISHED)
     }
-  }, [data])
+  }, [work])
 
   return (
     <>
@@ -37,24 +37,40 @@ export default function SingleWork() {
         </Head>
 
         <Header />
-        {loadState === 'inProgress' && <Loading />}
-        {loadState === 'finished' && data && Object.entries(data).length > 0 && (
-          <>
-            <main>
-              <Slider featuredImage={featuredImage} images={images} />
-              <WorkInfo workTitle={title} workRepo={repo} />
-              {videos && videos.length > 0 && <Videos videos={videos} />}
-              {notes && <Notes notes={notes} />}
-            </main>
-          </>
-        )}
-        {loadState === 'finished' && data && Object.entries(data).length <= 0 && (
-          <>
-            <Error404 />
-          </>
-        )}
+        {loadState === LOAD_STATES.IN_PROGRESS && <Loading />}
+        {loadState === LOAD_STATES.FINISHED &&
+          work &&
+          Object.entries(work).length > 0 && (
+            <>
+              <main>
+                <Slider featuredImage={featuredImage} images={images} />
+                <WorkInfo workTitle={title} workRepository={repository} />
+                {videos && videos.length > 0 && <Videos videos={videos} />}
+                {notes && <Notes notes={notes} />}
+              </main>
+            </>
+          )}
+        {loadState === LOAD_STATES.FINISHED &&
+          work &&
+          Object.entries(work).length <= 0 && (
+            <>
+              <Error404 />
+            </>
+          )}
       </AppLayout>
       <Footer />
     </>
   )
+}
+
+export async function getServerSideProps(context) {
+  const { id } = context.params
+  const res = await fetch(`http://localhost:3001/api/work/${id}`)
+  const data = await res.json()
+
+  return {
+    props: {
+      work: data,
+    },
+  }
 }

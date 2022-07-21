@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 import ReactLoading from 'react-loading'
 
-export default function Loading() {
+export default function Loading({ color }) {
   return (
-    <LoadingContainer>
+    <LoadingContainer color={color}>
       <ReactLoading type="bars" style={styles.ReactLoading} />
     </LoadingContainer>
   )
@@ -11,7 +11,7 @@ export default function Loading() {
 
 const LoadingContainer = styled.div`
   width: 100%;
-  fill: ${({ theme }) => theme.mainClr};
+  fill: ${({ color, theme }) => (color ? color : theme.mainClr)};
 `
 
 const styles = {

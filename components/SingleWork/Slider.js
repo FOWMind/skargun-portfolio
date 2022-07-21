@@ -6,6 +6,7 @@ import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from 'react-icons/bs'
 import { Image } from '../Layout/Image'
 
 export default function Slider({ featuredImage, images }) {
+  console.log(featuredImage, images)
   let currentPosition = 0
   const featuredImageRef = useRef(null)
   const sliderRef = useRef(null)
@@ -50,11 +51,7 @@ export default function Slider({ featuredImage, images }) {
     <StyledSlider>
       {featuredImage && (
         <FeaturedImageContainer>
-          <FeaturedImage
-            ref={featuredImageRef}
-            src={`/img/works/${featuredImage.src}`}
-            alt={featuredImage.alt || ''}
-          />
+          <FeaturedImage ref={featuredImageRef} src={featuredImage} alt="" />
           <SlideBtnContainer>
             <SlideBtn onClick={() => SlidePrevious()}>
               <BsArrowLeftSquareFill />
@@ -71,18 +68,12 @@ export default function Slider({ featuredImage, images }) {
         <Images ref={sliderRef}>
           {featuredImage && (
             <StyledSliderImageBtn onClick={() => SlideSet(0)}>
-              <StyledSliderImage
-                src={`/img/works/${featuredImage.src}`}
-                alt={featuredImage.alt || ''}
-              />
+              <StyledSliderImage src={featuredImage} alt="" />
             </StyledSliderImageBtn>
           )}
           {images.map((img, i) => (
             <StyledSliderImageBtn key={i} onClick={() => SlideSet(i + 1)}>
-              <StyledSliderImage
-                src={`/img/works/${img.src}` || ''}
-                alt={img.alt || ''}
-              />
+              <StyledSliderImage src={img} alt="" />
             </StyledSliderImageBtn>
           ))}
         </Images>

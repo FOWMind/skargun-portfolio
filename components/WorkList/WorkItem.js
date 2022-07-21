@@ -10,12 +10,12 @@ import { removeHttp, replaceSlug } from '../../utils'
 export default function WorkItem({ work }) {
   return (
     <StyledWorkItem>
-      <Link href={`/work/${replaceSlug(work.slug || work.title || work.id)}`}>
+      <Link href={`/work/${work.slug}`}>
         <a>
           {work.featuredImage && (
             <StyledWorkItemImage
-              src={`/img/works/${work.featuredImage.src}`}
-              alt={work.featuredImage.alt}
+              src={`${work.featuredImage}`}
+              alt={work.featuredImage}
               noBorder
             />
           )}
@@ -23,7 +23,7 @@ export default function WorkItem({ work }) {
       </Link>
 
       <StyledWorkItemInfo>
-        <Link href={`/work/${replaceSlug(work.slug || work.title || work.id)}`}>
+        <Link href={`/work/${work.slug}`}>
           <a>
             <StyledWorkItemInfoTitle title={work.title || 'Sin nombre'}>
               {work.title || 'Sin nombre'}
@@ -36,28 +36,28 @@ export default function WorkItem({ work }) {
               Categoria: {work.category}
             </StyledWorkItemInfoText>
           )}
-          {work.repo && (
+          {work.repository && (
             <>
-              {work.repo?.url && (
+              {work.repository?.url && (
                 <StyledWorkItemInfoText title="Ir al repositorio">
                   Repositorio:
                   <StyledWorkItemInfoLink
-                    href={encodeURI(work.repo?.url)}
+                    href={encodeURI(work.repository.url)}
                     target="_blank"
                   >
-                    {removeHttp(work.repo?.url)}
+                    {removeHttp(work.repository.url)}
                   </StyledWorkItemInfoLink>
                 </StyledWorkItemInfoText>
               )}
 
-              {work.repo?.demoUrl && (
+              {work.repository?.demoUrl && (
                 <StyledWorkItemInfoText title="Ver la DEMO">
                   Demo:
                   <StyledWorkItemInfoLink
-                    href={encodeURI(work.repo.demoUrl)}
+                    href={encodeURI(work.repository.demoUrl)}
                     target="_blank"
                   >
-                    {removeHttp(work.repo.demoUrl)}
+                    {removeHttp(work.repository.demoUrl)}
                   </StyledWorkItemInfoLink>
                 </StyledWorkItemInfoText>
               )}
@@ -80,11 +80,6 @@ const StyledWorkItem = styled.div`
     img {
       transform: scale(1.1);
       transition-duration: 1s;
-    }
-
-    div {
-      bottom: -0.1%; // Fix a bug with browser
-      transition-duration: 0.3s;
     }
   }
 
@@ -118,7 +113,7 @@ const StyledWorkItemImage = styled(Image)`
 
 const StyledWorkItemInfo = styled.div`
   position: absolute;
-  bottom: -100%;
+  bottom: 0;
   left: 0;
   z-index: 5;
   width: 100%;
@@ -129,7 +124,6 @@ const StyledWorkItemInfo = styled.div`
   padding: 1rem;
   text-transform: uppercase;
   color: #fff;
-  transition: bottom ease-in-out 0.5s;
 `
 
 const hideTextAtLimit = `

@@ -3,11 +3,11 @@ export const works = [
     id: 0,
     category: '2d',
     title: 'Sprites para juego 2D',
+    slug: 'sprites-para juEgo-2d',
     repo: {
       url: 'https://github.com/',
       demoUrl: 'https://user.github.io/',
     },
-    slug: 'sprites-para juEgo-2d',
     featuredImage: {
       src: 'ballpong/preview.png',
     },
@@ -19,18 +19,22 @@ export const works = [
     ],
     videos: [
       {
-        url: 'CALWA2nLxzc',
         platform: 'youtube',
+        videoId: 'CALWA2nLxzc',
         desc: 'Descripción corta',
       },
       {
-        url: '2iaPuUFIyMo',
         platform: 'youtube',
+        videoId: '2iaPuUFIyMo',
         desc: 'lorem ipsum dolor sit amet consectetur adipiscing elit. duis laoreet velit turpis, venenatis scelerisque nibh convallist a. maecenas eu eleifend purus quisque egestas viverra rhoncus. lorem ipsum dolor sit amet consectetur adipiscing elit. duis laoreet velit turpis, venenatis scelerisque nibh convallist a. maecenas eu eleifend purus quisque egestas viverra rhoncus.',
       },
       {
-        url: '3U-umc-pE20',
         platform: 'youtube',
+        videoId: '3U-umc-pE20',
+      },
+      {
+        platform: 'vimeo',
+        videoId: '401102477',
       },
       {
         url: 'https://youtu.be/3U-umc-pE20',
@@ -52,7 +56,7 @@ export const works = [
     ],
   },
   {
-    id: 1,
+    id: undefined,
     category: '3d',
     title: 'Modelado 3D',
     featuredImage: {
