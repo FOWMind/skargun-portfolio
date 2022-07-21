@@ -59,7 +59,8 @@ export default function DashboardAddWork() {
         ...values,
         featuredImageRaw: base64,
       }
-      console.log('to backend: ', newValues)
+      setImagesState([])
+      formikRef.current.resetForm()
       console.log('subiendo datos al servidor...')
       fetch('http://localhost:3000/api/works', {
         method: 'post',
@@ -73,8 +74,6 @@ export default function DashboardAddWork() {
             console.warn('no salió todo bien 👎')
             Promise.reject()
           }
-          // setImagesState([])
-          // formikRef.current.resetForm()
         })
         .then((data) => {
           console.log(data)
