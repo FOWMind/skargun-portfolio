@@ -4,7 +4,7 @@ const { API } = require('../../../utils/constants')
 export const config = {
   api: {
     bodyParser: {
-      sizeLimit: '12mb',
+      sizeLimit: '13mb',
     },
   },
 }
@@ -12,7 +12,6 @@ export const config = {
 export default function handler(req, res) {
   if (req.method === 'POST') {
     const work = req.body
-    // `${API.URL}/${API.ENDPOINTS.CREATE_SINGLE_WORK}`
     return fetch(`${API.URL}/${API.ENDPOINTS.CREATE_SINGLE_WORK}`, {
       method: 'POST',
       body: work,
@@ -30,7 +29,6 @@ export default function handler(req, res) {
       .then((data) => res.status(200).json(data))
       .catch((error) => res.status(405).json(error))
   } else if (req.method === 'GET') {
-    // `${API.URL}/${API.ENDPOINTS.VIEW_WORKS}`
     return fetch(`${API.URL}/${API.ENDPOINTS.VIEW_WORKS}`)
       .then((response) => {
         if (response.ok) {

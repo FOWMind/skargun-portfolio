@@ -6,7 +6,6 @@ import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from 'react-icons/bs'
 import { Image } from '../Layout/Image'
 
 export default function Slider({ featuredImage, images }) {
-  console.log(featuredImage, images)
   let currentPosition = 0
   const featuredImageRef = useRef(null)
   const sliderRef = useRef(null)
