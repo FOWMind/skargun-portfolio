@@ -12,6 +12,8 @@ const DashboardAddWorkInitialValues = {
     demoUrl: '',
   },
   featuredImage: {},
+  image: '',
+  images: [],
   note: '',
   notes: [],
 }

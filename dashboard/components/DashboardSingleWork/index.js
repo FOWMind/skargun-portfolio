@@ -32,12 +32,10 @@ export default function DashboardSingleWork({
     if (type === renderType.link) {
       content = (
         <FeaturedText>
-          {item ? (
+          {item && (
             <WorkLink href={item} target="_blank">
               {formatWorkText(item)}
             </WorkLink>
-          ) : (
-            textLack
           )}
         </FeaturedText>
       )
@@ -60,8 +58,8 @@ export default function DashboardSingleWork({
         <WorkUl>
           {item.map((img, i) => (
             <WorkUlItem key={img.id || i}>
-              <WorkLink href={`/img/works/${img.src}`} target="_blank">
-                {img.src}
+              <WorkLink href={img} target="_blank" title={img}>
+                {img}
               </WorkLink>
             </WorkUlItem>
           ))}
@@ -104,7 +102,7 @@ export default function DashboardSingleWork({
     }
 
     return (
-      <WorkText title={formatWorkText(item)}>
+      <WorkText>
         <NormalText>{name}: </NormalText>
         {content}
       </WorkText>
@@ -113,15 +111,14 @@ export default function DashboardSingleWork({
 
   return (
     <WorkContainer>
-      {featuredImage && (
-        <WorkImage src={`/img/works/${featuredImage.src}`} alt="" />
-      )}
+      {featuredImage && <WorkImage src={featuredImage} alt="" />}
       {RenderWorkItem('ID', id)}
       {RenderWorkItem('Título', title)}
       {RenderWorkItem('Categoría', category)}
       {RenderWorkItem('Slug/URL', slug)}
       {RenderWorkItem('Repositorio', repo?.url, renderType.link)}
       {RenderWorkItem('Demo', repo?.demoUrl, renderType.link)}
+      {RenderWorkItem('Imagen destacada', featuredImage, renderType.link)}
       {RenderWorkItem('Imágenes', images, renderType.listOfImages)}
       {RenderWorkItem('Videos', videos, renderType.listOfVideos)}
       {RenderWorkItem('Notas', notes, renderType.list)}
@@ -177,14 +174,17 @@ const WorkText = styled.div`
   font-size: 1rem;
   display: block;
   margin-bottom: 0.25rem;
+  overflow: auto;
 `
 
 const WorkLink = styled.a`
-  text-decoration: underline;
+  text-decoration: none;
+  font-weight: 500;
   color: #87c754;
 
   &:hover {
-    text-decoration: none;
+    text-decoration: underline;
+    color: #000;
   }
 `
 
@@ -199,21 +199,12 @@ const FeaturedText = styled.strong`
 
 const WorkUl = styled.ul`
   margin-bottom: 0.25rem;
-  padding-left: 2rem;
-  list-style: disc;
+  list-style-type: none;
 `
 
 const WorkUlItem = styled.li`
   display: block;
   max-width: 100%;
-  white-space: pre-wrap;
+  margin-bottom: 0.25rem;
   position: relative;
-
-  &::before {
-    content: '-';
-    font-weight: 700;
-    position: absolute;
-    top: auto;
-    left: -0.6rem;
-  }
 `

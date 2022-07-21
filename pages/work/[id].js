@@ -65,7 +65,7 @@ export default function SingleWork({ work }) {
 
 export async function getServerSideProps(context) {
   const { id } = context.params
-  const res = await fetch(`${API.URL}/${API.ENDPOINTS.VIEW_SINGLE_WORK}/${id}`)
+  const res = await fetch(`http://localhost:3001/api/work/${id}`)
   const data = await res.json()
 
   return {

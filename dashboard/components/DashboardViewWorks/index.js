@@ -26,7 +26,7 @@ export default function DashboardViewWorks() {
       <DashboardViewWorksTitle>Trabajos</DashboardViewWorksTitle>
       <WorksContainer>
         {worksLoadState === LOAD_STATES.IN_PROGRESS && <Loading color="#000" />}
-        {works &&
+        {works.length > 0 &&
           worksLoadState === LOAD_STATES.FINISHED &&
           works.map((work, i) => (
             <DashboardSingleWork key={work.id || i} {...work} />

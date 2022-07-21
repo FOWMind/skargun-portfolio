@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { IoAdd, IoRemove } from 'react-icons/io5'
 import { FieldArray } from 'formik'
-import { useEffect } from 'react'
 
 // Components
 import Input from './Input'

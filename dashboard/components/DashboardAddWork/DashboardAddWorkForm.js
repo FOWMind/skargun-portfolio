@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { useState, useRef } from 'react'
-import { Form } from 'formik'
+import { useEffect, useRef } from 'react'
+import { FieldArray, Form } from 'formik'
 
 // Components
 import FormField from '../Layout/FormField'
@@ -9,15 +9,31 @@ import Option from '../Layout/Option'
 import FormFileField from '../Layout/FormFileField'
 import FormEditableList from '../Layout/FormEditableList'
 import { DashboardButton as StyledButton } from '../Layout/DashboardButton'
+import { getBase64FromFile, getBase64FromFiles } from '../../../utils'
 
 export default function DashboardAddWorkForm({
   values,
   errors,
   setFieldValue,
   setFieldTouched,
+  validateFeaturedImage,
+  validateImages,
   featuredImageState,
+  imagesState,
+  setImagesState,
 }) {
-  const featuredImageInput = useRef(null)
+  // const imagesPreviewRef = useRef()
+
+  // useEffect(() => {
+  //   if (imagesState.length > 0) {
+  //     imagesPreviewRef.current.innerHTML = ''
+  //     imagesState.map((imageFile) => {
+  //       getBase64FromFile(imageFile, (base64) => {
+  //         imagesPreviewRef.current.innerHTML += `<img src="${base64}" alt="" width="100" />`
+  //       })
+  //     })
+  //   }
+  // }, [imagesState])
 
   return (
     <Form>
@@ -76,8 +92,8 @@ export default function DashboardAddWorkForm({
         tooltip="Una imagen que se usará de portada para el trabajo"
         fileButtonText="Seleccionar imagen"
         name="featuredImage"
-        id="featuredImage"
         accept="image/png, image/jpeg"
+        validate={validateFeaturedImage}
         onChange={(event) => {
           const imageFile = event.currentTarget.files[0]
           /* SEE: https://github.com/jaredpalmer/formik/discussions/3128#discussioncomment-958661 */
@@ -92,6 +108,71 @@ export default function DashboardAddWorkForm({
       {/* Featured Image Preview */}
       {featuredImageState && featuredImageState.src && (
         <DashboardImage src={featuredImageState.src} />
+      )}
+
+      {/* Secondary Images Files Selection */}
+      <FormFileField
+        label="Imágenes secundarias"
+        tooltip="Imágenes que se podrán ver al ingresar a un trabajo."
+        fileButtonText="Seleccionar imágenes"
+        name="images"
+        id="images"
+        accept="image/png, image/jpeg"
+        multiple
+        validate={validateImages}
+        onChange={(event) => {
+          const selectedImages = [...event.currentTarget.files]
+          console.log(selectedImages)
+          let validImages = selectedImages.filter((selectedImage) => {
+            if (selectedImage.type?.substr(0, 5) !== 'image') return
+            else if (selectedImage.size > 2000000) return
+            return selectedImage
+          })
+          validImages = validImages.slice(0, 5)
+
+          const base64Images = []
+          getBase64FromFiles(validImages, (base64) => {
+            base64Images.push(base64)
+            console.log(base64Images)
+            setFieldValue('images', base64Images)
+            setImagesState(base64Images)
+          })
+
+          // if (values.images.length < 5) {
+          //   selectedImages.forEach((selectedImage) => {
+          //     if (values.images.length < 5) {
+          //       const fileObject = {
+          //         lastModified: selectedImage.lastModified,
+          //         lastModifiedDate: selectedImage.lastModifiedDate,
+          //         name: selectedImage.name,
+          //         size: selectedImage.size,
+          //         type: selectedImage.type,
+          //       }
+          //       console.log('fileObject: ', fileObject)
+          //       arrayHelpers.push(fileObject)
+          //     }
+          //   })
+          // }
+        }}
+        onClick={(event) => {
+          event.target.value = null
+          setFieldTouched('images', true)
+        }}
+      />
+
+      {imagesState.length > 0 && (
+        <ImagesPreview>
+          {imagesState.map((image, index) => (
+            <ImagesPreviewLink
+              href={image}
+              target="_blank"
+              key={index}
+              rel="noreferrer"
+            >
+              <ImagesPreviewItem src={image} alt="" />
+            </ImagesPreviewLink>
+          ))}
+        </ImagesPreview>
       )}
 
       {/* Notes Editable List */}
@@ -125,4 +206,30 @@ const DashboardImage = styled.img`
   border-radius: 20px;
   object-fit: contain;
   margin-bottom: 0.5rem;
+`
+
+const ImagesPreview = styled.div`
+  margin: 0.5rem 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: #eee;
+  border-radius: 10px;
+`
+
+const ImagesPreviewLink = styled.a`
+  width: 33%;
+
+  @media screen and (min-width: 800px) {
+    width: 20%;
+  }
+`
+
+const ImagesPreviewItem = styled.img`
+  max-width: 100%;
+  padding: 0.25rem;
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
 `

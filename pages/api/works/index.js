@@ -1,10 +1,19 @@
 import fetch from 'node-fetch'
 const { API } = require('../../../utils/constants')
 
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '12mb',
+    },
+  },
+}
+
 export default function handler(req, res) {
   if (req.method === 'POST') {
     const work = req.body
-    return fetch(`${API.URL}/${API.ENDPOINTS.CREATE_SINGLE_WORK}`, {
+    // `${API.URL}/${API.ENDPOINTS.CREATE_SINGLE_WORK}`
+    return fetch(`http://localhost:3001/api/works`, {
       method: 'POST',
       body: work,
       headers: {
@@ -21,7 +30,8 @@ export default function handler(req, res) {
       .then((data) => res.status(200).json(data))
       .catch((error) => res.status(405).json(error))
   } else if (req.method === 'GET') {
-    return fetch(`${API.URL}/${API.ENDPOINTS.VIEW_WORKS}`)
+    // `${API.URL}/${API.ENDPOINTS.VIEW_WORKS}`
+    return fetch(`http://localhost:3001/api/works`)
       .then((response) => {
         if (response.ok) {
           return response.json()
