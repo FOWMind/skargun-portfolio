@@ -6,9 +6,7 @@ export const DataContext = createContext({
 })
 
 export function DataProvider({ children }) {
-  const { data: works, loadState: worksLoadState } = useGet(
-    'http://localhost:3000/api/works'
-  )
+  const { data: works, loadState: worksLoadState } = useGet('/api/works')
   return (
     <DataContext.Provider value={{ data: { works, worksLoadState } }}>
       {children}

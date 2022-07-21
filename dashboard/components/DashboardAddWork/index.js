@@ -61,8 +61,8 @@ export default function DashboardAddWork() {
       }
       setImagesState([])
       formikRef.current.resetForm()
-      console.log('subiendo datos al servidor...')
-      fetch('http://localhost:3000/api/works', {
+      console.log('subiendo datos al servidor..')
+      fetch('/api/works', {
         method: 'post',
         body: JSON.stringify(newValues),
       })
@@ -77,6 +77,9 @@ export default function DashboardAddWork() {
         })
         .then((data) => {
           console.log(data)
+        })
+        .catch((error) => {
+          console.error(error)
         })
         .finally(() => {
           console.log('se subieron los datos al servidor.')

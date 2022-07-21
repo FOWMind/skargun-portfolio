@@ -133,7 +133,6 @@ export default function DashboardAddWorkForm({
           const base64Images = []
           getBase64FromFiles(validImages, (base64) => {
             base64Images.push(base64)
-            console.log(base64Images)
             setFieldValue('images', base64Images)
             setImagesState(base64Images)
           })
